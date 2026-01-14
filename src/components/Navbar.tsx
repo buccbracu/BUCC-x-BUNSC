@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
+    { name: "About", path: "/about" },
     { name: "Events", path: "/events" },
     { name: "Publications", path: "/publications" },
     { name: "Media", path: "/media" },
@@ -27,32 +27,32 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled || isMobileMenuOpen
-          ? "glass shadow-lg border-b border-border"
-          : "bg-transparent border-b border-border/30"
+          ? "bg-background/80 backdrop-blur-md border-b border-white/5"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary group-hover:scale-110 transition-transform duration-300">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-full overflow-hidden transition-transform duration-500 group-hover:scale-105">
               <img src={logoIcon} alt="BUNSC Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="text-xl font-bold text-gradient hidden sm:block">BUNSC</span>
+            <span className="text-lg font-medium tracking-tight text-foreground hidden sm:block">BUNSC</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-accent/50 ${
+                className={`text-sm font-medium transition-colors duration-300 hover:text-primary ${
                   location.pathname === item.path
-                    ? "bg-accent text-accent-foreground"
-                    : ""
+                    ? "text-foreground"
+                    : "text-muted-foreground"
                 }`}
               >
                 {item.name}
@@ -61,57 +61,52 @@ const Navbar = () => {
           </div>
 
           {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-4">
             <Button 
               asChild 
-              className="hidden lg:flex bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+              variant="outline"
+              className="hidden lg:flex rounded-full px-6 border-white/10 hover:bg-white/5 hover:text-foreground transition-all duration-300"
             >
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/contact">Contact</Link>
             </Button>
 
-            <Button
-              variant="outline"
-              size="icon"
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden rounded-full border-2 border-primary/30 hover:border-primary hover:bg-primary/10"
+              className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5 text-primary" />
+                <X className="h-6 w-6" />
               ) : (
-                <Menu className="h-5 w-5 text-primary" />
+                <Menu className="h-6 w-6" />
               )}
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden pb-4 animate-fade-in">
-            <div className="flex flex-col space-y-2">
+          <div className="lg:hidden pb-8 animate-in slide-in-from-top-5 fade-in duration-300">
+            <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                  className={`block text-2xl font-medium tracking-tight transition-colors ${
                     location.pathname === item.path
-                      ? "bg-accent text-accent-foreground"
-                      : "hover:bg-accent/50"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <span className="font-medium">{item.name}</span>
+                  {item.name}
                 </Link>
               ))}
               <Link
                 to="/contact"
-                className={`block px-4 py-3 rounded-lg transition-colors ${
-                  location.pathname === "/contact"
-                    ? "bg-accent text-accent-foreground"
-                    : "hover:bg-accent/50"
-                }`}
+                className="block text-2xl font-medium tracking-tight text-primary pt-4"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="font-medium text-primary">Contact Us</span>
+                Contact Us
               </Link>
             </div>
           </div>

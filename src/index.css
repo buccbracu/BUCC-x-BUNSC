@@ -2,54 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Dark theme - Nature Night (default) */
-    --background: 150 20% 8%;
-    --foreground: 142 30% 92%;
+    /* Organic Minimalism - Apple-inspired */
+    --background: 220 15% 10%;
+    --foreground: 60 5% 96%;
 
-    --card: 150 15% 12%;
-    --card-foreground: 142 30% 92%;
+    --card: 220 15% 12%;
+    --card-foreground: 60 5% 96%;
 
-    --popover: 150 15% 10%;
-    --popover-foreground: 142 30% 92%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 60 5% 96%;
 
-    --primary: 158 64% 52%;
-    --primary-foreground: 150 20% 8%;
+    --primary: 140 30% 50%;
+    --primary-foreground: 220 15% 10%;
 
-    --secondary: 150 20% 16%;
-    --secondary-foreground: 142 30% 92%;
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 60 5% 96%;
 
-    --muted: 150 15% 18%;
-    --muted-foreground: 142 20% 60%;
+    --muted: 215 10% 25%;
+    --muted-foreground: 215 10% 65%;
 
-    --accent: 158 45% 22%;
-    --accent-foreground: 158 64% 82%;
+    --accent: 140 20% 25%;
+    --accent-foreground: 140 30% 80%;
 
     --destructive: 0 62.8% 50%;
-    --destructive-foreground: 142 30% 92%;
+    --destructive-foreground: 60 5% 96%;
 
-    --border: 150 20% 20%;
-    --input: 150 20% 18%;
-    --ring: 158 64% 52%;
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 140 30% 50%;
 
-    --radius: 0.75rem;
-
-    /* Enhanced dark gradients */
-    --gradient-nature: linear-gradient(135deg, hsl(158 64% 45%), hsl(142 70% 50%));
-    --gradient-forest: linear-gradient(180deg, hsl(150 30% 15%), hsl(150 50% 8%));
-    --gradient-earth: linear-gradient(135deg, hsl(150 40% 20%), hsl(158 55% 35%));
-    
-    --shadow-nature: 0 10px 50px -10px hsl(158 64% 52% / 0.4);
-    --shadow-soft: 0 4px 16px hsl(150 50% 5% / 0.5);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --radius: 1rem;
   }
 }
 
@@ -59,9 +43,10 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
+
 
   /* Hide lovable badge */
   #lovable-badge {
@@ -72,75 +57,79 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-background;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-primary/30 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/50;
-  }
 }
 
 @layer utilities {
-  /* Nature-inspired animations */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .animate-slow-zoom {
+    animation: slow-zoom 20s ease-in-out infinite alternate;
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  .animate-glow {
-    animation: glow 3s ease-in-out infinite;
-  }
-
-  @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
-    50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.6); }
-  }
-
-  /* Gradient text */
-  .text-gradient {
-    background: var(--gradient-nature);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Glass morphism */
-  .glass {
-    background: hsl(var(--card) / 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--border) / 0.5);
-  }
-
-  /* Sponsor scroll animation */
-  @keyframes scroll {
+  @keyframes slow-zoom {
     0% {
-      transform: translateX(0);
+      transform: scale(1);
     }
     100% {
-      transform: translateX(-50%);
+      transform: scale(1.1);
+    }
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Core Motion Philosophy Animations */
+  
+  /* Breathing World - Slow background shift */
+  @keyframes breathe {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .animate-breathe {
+    background-size: 200% 200%;
+    animation: breathe 20s ease-in-out infinite;
+  }
+
+  /* Slow Reveal - Line by line fade in */
+  @keyframes reveal-line {
+    from { 
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(4px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
     }
   }
 
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
+  .animate-reveal {
+    animation: reveal-line 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   }
 
-  .animate-scroll:hover {
-    animation-play-state: paused;
+  /* Inspection Hover - No scale, just clarity and shadow */
+  .hover-inspection {
+    @apply transition-all duration-700 ease-out;
+  }
+  
+  .hover-inspection:hover {
+    @apply shadow-2xl shadow-black/20 ring-1 ring-white/10;
+    transform: translateY(-2px);
+  }
+
+  /* Text appearing like thought */
+  .text-thought {
+    opacity: 0;
+    animation: reveal-line 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   }
 }

@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import FadeIn from "@/components/FadeIn";
 
 // Import representative images from events
 const eventImages = import.meta.glob("../assets/**/**.jpg", { eager: true });
@@ -108,102 +109,94 @@ const Publications = () => {
     return imagePath ? (eventImages[imagePath] as ImageModule).default : "";
   };
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Health & Wellness":
-        return "bg-green-500/10 text-green-500 border-green-500/30";
-      case "Environment":
-        return "bg-emerald-500/10 text-emerald-500 border-emerald-500/30";
-      case "Social Impact":
-        return "bg-pink-500/10 text-pink-500 border-pink-500/30";
-      case "Education":
-        return "bg-blue-500/10 text-blue-500 border-blue-500/30";
-      case "Culture":
-        return "bg-purple-500/10 text-purple-500 border-purple-500/30";
-      default:
-        return "bg-primary/10 text-primary border-primary/30";
-    }
-  };
-
   return (
-    <div className="min-h-screen pt-24 pb-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-5xl font-bold text-gradient mb-8 text-center">Publications</h1>
-        <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-          Explore our blogs, research articles, and magazines documenting our journey in science and community service
-        </p>
-        
-        <div className="max-w-6xl mx-auto space-y-16">
-          {/* Blogs Section */}
-          <section>
-            <h2 className="text-3xl font-bold text-primary mb-6">Latest Blogs</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {blogs.map((blog, index) => (
-                <div
-                  key={index}
-                  className="glass rounded-xl overflow-hidden hover:scale-105 transition-transform cursor-pointer"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="h-48 overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
+      <section className="pt-32 md:pt-48 pb-16 md:pb-24 px-6 md:px-12">
+        <div className="container mx-auto max-w-5xl">
+          <FadeIn>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-12">
+              Insights.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <p className="text-2xl md:text-3xl text-muted-foreground font-light leading-relaxed max-w-3xl">
+              Thoughts, research, and stories from the frontier of natural sciences.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="px-6 md:px-12 pb-16 md:pb-24 border-t border-white/5">
+        <div className="container mx-auto pt-16 md:pt-24">
+          <FadeIn>
+            <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-16">
+              Articles
+            </h2>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-16">
+            {blogs.map((blog, index) => (
+              <FadeIn key={index} delay={index * 100} className="h-full">
+                <div className="group cursor-pointer hover-inspection p-4 rounded-2xl transition-all duration-500 h-full flex flex-col">
+                  <div className="aspect-[3/2] overflow-hidden rounded-xl mb-6 bg-secondary/20">
                     <img
                       src={getPublicationImage(blog.folderName)}
                       alt={blog.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700"
                     />
                   </div>
-                  <div className="p-6">
-                    <Badge
-                      variant="outline"
-                      className={`mb-3 ${getCategoryColor(blog.category)}`}
-                    >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[10px] font-medium tracking-widest uppercase text-primary">
                       {blog.category}
-                    </Badge>
-                    <h3 className="text-xl font-bold mb-2">{blog.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      By {blog.author} • {blog.date}
-                    </p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {blog.preview}
-                    </p>
+                    </span>
+                    <span className="w-px h-3 bg-border" />
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-widest">
+                      {blog.date}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-medium mb-3 group-hover:text-primary transition-colors">
+                    {blog.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4 text-sm font-light line-clamp-3">
+                    {blog.preview}
+                  </p>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="w-6 h-px bg-border" />
+                    {blog.author}
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          {/* Magazines Section */}
-          <section>
-            <h2 className="text-3xl font-bold text-primary mb-6">Magazines & Publications</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {magazines.map((magazine, index) => (
-                <div
-                  key={index}
-                  className="glass rounded-xl overflow-hidden hover:scale-105 transition-transform cursor-pointer"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="h-72 overflow-hidden">
+      <section className="px-6 md:px-12 pb-16 md:pb-24 border-t border-white/5">
+        <div className="container mx-auto pt-16 md:pt-24">
+          <FadeIn>
+            <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-16">
+              Publications
+            </h2>
+          </FadeIn>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {magazines.map((magazine, index) => (
+              <FadeIn key={index} delay={index * 100} className="h-full">
+                <div className="group cursor-pointer hover-inspection p-4 rounded-2xl transition-all duration-500 h-full flex flex-col">
+                  <div className="aspect-[3/4] overflow-hidden rounded-lg mb-6 shadow-sm bg-secondary/20 relative">
                     <img
                       src={getPublicationImage(magazine.folderName)}
                       alt={magazine.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700"
                     />
                   </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary">{magazine.issue}</Badge>
-                      <span className="text-xs text-muted-foreground">{magazine.date}</span>
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{magazine.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {magazine.description}
-                    </p>
-                  </div>
+                  <h3 className="text-lg font-medium mb-2">{magazine.title}</h3>
+                  <p className="text-xs text-muted-foreground mb-1">{magazine.issue}</p>
+                  <p className="text-xs text-muted-foreground/60">{magazine.date}</p>
                 </div>
-              ))}
-            </div>
-          </section>
+              </FadeIn>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

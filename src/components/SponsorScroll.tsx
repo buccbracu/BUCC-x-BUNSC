@@ -16,7 +16,7 @@ const SponsorScroll = () => {
           {sponsors.map((sponsor, index) => (
             <div
               key={`sponsor-1-${index}`}
-              className="flex-shrink-0 mx-8 grayscale hover:grayscale-0 transition-all duration-300"
+              className="flex-shrink-0 mx-8 transition-all duration-300"
             >
               <img
                 src={sponsor.logo}
@@ -29,7 +29,7 @@ const SponsorScroll = () => {
           {sponsors.map((sponsor, index) => (
             <div
               key={`sponsor-2-${index}`}
-              className="flex-shrink-0 mx-8 grayscale hover:grayscale-0 transition-all duration-300"
+              className="flex-shrink-0 mx-8 transition-all duration-300"
             >
               <img
                 src={sponsor.logo}

@@ -1,407 +1,128 @@
-# BUNSC Website
+# BRAC University Natural Sciences Club (BUNSC)
 
-Production-ready single-page website for the BRAC University Natural Sciences Club (BUNSC). Built as a fast, static React application with a modern component library and a themeable design system.
+![BUNSC Hero](src/assets/hero-nature.jpg)
 
----
+A premium, interactive digital experience for the BRAC University Natural Sciences Club. This project bridges the gap between scientific curiosity and modern web design, featuring a "Living Field" 3D environment, organic minimalism, and a seamless user experience.
 
-## Project Overview
-- See the live preview https://bucc-x-bunsc.vercel.app/
-### Purpose of the website
+## Live Site
+- https://bunsc.vercel.app/
+## 🌿 Project Vision
 
-- Present BUNSC’s mission, advisors, and leadership information.
-- Showcase events, publications/blog-style content, and a media gallery.
-- Provide clear contact channels and social presence links.
+**"Where Ideas Take Root."**
 
-### Target users
+This website serves as the digital headquarters for BUNSC, designed to:
+- **Immerse** visitors in a "Living Field of Curiosity" (interactive 3D hero).
+- **Showcase** the club's legacy through events, publications, and media.
+- **Connect** inquisitive minds with the broader scientific community.
 
-- Prospective members and students interested in BUNSC.
-- University stakeholders (faculty, advisors, partners).
-- Visitors looking for event highlights, publications, and media.
+## 🛠 Tech Stack
 
-### Core features and functionality
+Built with a focus on performance, aesthetics, and type safety.
 
-- Multi-page navigation within a single-page app (SPA).
-- Home page hero with introduction video (fullscreen + minimized “picture-in-picture” experience).
-- Events listing with categories/status badges and representative images.
-- Publications listing (blogs and magazines) backed by curated content in code.
-- Media gallery with folder grouping and lightbox viewing.
-- Contact page with mailto and social links.
-- Dark/light theming (class-based) and responsive navigation.
+- **Core**: [React 18](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/), [Shadcn UI](https://ui.shadcn.com/)
+- **3D & Animation**: 
+  - [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) (Canvas management)
+  - [@react-three/drei](https://github.com/pmndrs/drei) (3D helpers)
+  - [Simplex Noise](https://github.com/jwagner/simplex-noise.js) (Organic particle motion)
+  - [GSAP](https://gsap.com/) (High-performance cursor & micro-interactions)
+- **Routing**: [React Router DOM](https://reactrouter.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
----
+## ✨ Key Features
 
-## Tech Stack
+### 1. The "Living Field" Hero
+A custom 3D particle system (`src/components/LivingField.tsx`) that reacts to mouse movement.
+- **Macro Elements**: Muddy brown pebbles/rocks.
+- **Meso Elements**: Primary green spores.
+- **Micro Elements**: Off-white dust/light motes.
+- **Tech**: Uses `InstancedMesh` for rendering thousands of particles at 60fps.
 
-### Frontend technologies
+### 2. Organic Design System
+- **Palette**: Eucalyptus, Stone, Moss, and Sand.
+- **Typography**: Clean sans-serifs paired with editorial serif accents.
+- **Custom Cursor**: A dual-layer magnetic cursor (GSAP) that expands on interactive elements.
 
-- Framework: React 18 + TypeScript
-- Build tool: Vite 5
-- Routing: React Router DOM
-- Styling: Tailwind CSS (CSS variables + HSL token system)
-- Component system: shadcn/ui patterns + Radix UI primitives
-- Forms/validation utilities (available in dependencies): React Hook Form, Zod
-- Icons: lucide-react
-- UI feedback: Sonner + shadcn/ui Toaster
-- Data fetching layer (available): @tanstack/react-query (QueryClient provided globally)
+### 3. Interactive Components
+- **Event Carousel**: Touch-friendly, swipe-enabled carousel with glassmorphism effects.
+- **Media Gallery**: Masonry-style layout for club photography.
+- **Publications**: Digital archive for the "BUNSC Scroll" and other writings.
 
-### Backend technologies
+## 📂 Project Structure
 
-- Not included in this repository.
-- The site currently runs as a static SPA; any dynamic features (forms, CMS, auth) would require an external backend.
-
-### Database and storage
-
-- Not included.
-- Content and media are currently stored as static assets under the source tree.
-
-### Third-party services and APIs
-
-- Vercel Analytics (client-side analytics component).
-- No other APIs/endpoints are currently called by the app.
-
----
-
-## System Architecture
-
-### High-level architecture
-
-- Client-side rendered SPA hosted as static files.
-- Routing handled in the browser; server must rewrite all routes to /index.html.
-
-Conceptually:
-
-```text
-Browser
-	└─ loads static assets (HTML/CSS/JS/images/video)
-			 └─ React app mounts
-						└─ React Router swaps page components
+```bash
+src/
+├── assets/             # Images, videos, and static resources
+├── components/         # Reusable UI components
+│   ├── ui/             # Shadcn UI primitives (Button, Card, etc.)
+│   ├── LivingField.tsx # 3D Particle System
+│   ├── CustomCursor.tsx# GSAP Cursor
+│   └── ...
+├── pages/              # Route components (Home, About, Events...)
+├── lib/                # Utilities (Tailwind merger, etc.)
+└── App.tsx             # Main entry with Providers
 ```
 
-### Client–server interaction
-
-- On first load, the host serves built static assets (generated by `vite build`).
-- Navigation between pages is handled by React Router (no full page reload).
-- The hosting platform must support SPA rewrites:
-	- Vercel: configured via vercel.json rewrites.
-	- Netlify (or similar): configured via public/_redirects.
-
-### Data flow overview
-
-- The app is content-driven and currently uses:
-	- In-code curated data arrays (events, publications, panel members).
-	- Static assets loaded via Vite’s bundling.
-	- `import.meta.glob(..., { eager: true })` for galleries (build-time inclusion of images).
-- Runtime state is local to the client (theme toggle, video modal states, lightbox selection).
-
----
-
-## Folder & File Structure
-
-### Major directories
-
-- src/: Application source code
-- src/pages/: Route-level pages (Home, About, Events, Publications, Media, Contact)
-- src/components/: Shared layout and feature components (Navbar, Footer, carousels)
-- src/components/ui/: shadcn/ui + Radix-based UI primitives
-- src/assets/: Images and video used across pages (events/media folders)
-- public/: Static public assets (hosted as-is) and SPA redirect rules
-
-### Responsibilities of key files
-
-- src/main.tsx: React root render + Vercel Analytics mount
-- src/App.tsx: Global providers (ErrorBoundary, React Query, Tooltips, Toasts) + route table
-- src/index.css: Design tokens (HSL variables), dark mode class, global utilities (glass, gradients)
-- vite.config.ts: Dev server config + path alias (`@` → src) + lovable-tagger in development
-- vercel.json: SPA rewrite configuration for Vercel
-- public/_redirects: SPA rewrite configuration for Netlify-style hosting
-
----
-
-## Installation & Setup
+## 🚀 Getting Started
 
 ### Prerequisites
+- Node.js (v18 or higher)
+- npm or bun
 
-- Node.js (LTS recommended)
-- One package manager:
-	- npm (works out of the box)
-	- bun (lockfile is present: bun.lockb)
+### Installation
 
-### Environment setup
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/bucc-x-bunsc.git
+   cd bucc-x-bunsc
+   ```
 
-- No required environment variables for the current codebase.
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
 
-### Installation steps
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-Using npm:
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-```bash
-npm install
+## 🎨 Customization
+
+### Adjusting the 3D Field
+Modify `src/components/LivingField.tsx`:
+```typescript
+const CONFIG = {
+  colors: { ... }, // Update palette
+  counts: { ... }, // Change particle density
+  motion: { ... }  // Tweak speed and physics
+};
 ```
 
-Using bun:
+### Theme Colors
+Tailwind colors are defined in `src/index.css` using CSS variables (HSL format) and mapped in `tailwind.config.ts`.
 
-```bash
-bun install
-```
+## 🤝 Contribution
 
-### Running the project locally
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-```bash
-npm run dev
-```
+## 📄 License
 
-- Dev server runs on `http://localhost:8080` (see vite.config.ts).
-
-Build and preview:
-
-```bash
-npm run build
-npm run preview
-```
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-## Environment Variables
+*Built with 💚 by the BRAC University Computer Club (BUCC) for BUNSC.*
 
-This project currently does not require any environment variables.
-
-If you later add APIs (e.g., contact form submission, CMS, image hosting), use Vite’s convention:
-
-- Prefix client-exposed variables with `VITE_`.
-- Store them in `.env`, `.env.development`, `.env.production`.
-
-Suggested future variables (not currently used):
-
-- `VITE_API_BASE_URL`: Base URL for a backend service
-- `VITE_CONTACT_FORM_ENDPOINT`: Endpoint for contact submissions
-- `VITE_SENTRY_DSN`: Error monitoring DSN (client)
-
----
-
-## Core Features Breakdown
-
-### Navigation and routing
-
-- Routes are defined in src/App.tsx and map directly to pages:
-	- `/` → Home
-	- `/about` → About
-	- `/events` → Events
-	- `/publications` → Publications
-	- `/media` → Media
-	- `/contact` → Contact
-	- `*` → NotFound
-
-User flow:
-
-1. User lands on Home.
-2. Uses Navbar links to navigate between pages.
-3. Footer provides quick links and external social links.
-
-### Home page (hero + intro video)
-
-- Displays hero image and CTA buttons.
-- “Watch Introduction” opens a fullscreen video view.
-- Video can be minimized and restored; closing stops playback.
-
-Business logic overview:
-
-- Local state controls fullscreen/minimized state and play/pause.
-- Uses refs to control video elements safely.
-
-### Events
-
-- Event metadata is curated in code.
-- Each event card includes:
-	- Category badge (color-coded)
-	- Status badge
-	- Representative image resolved from src/assets using `import.meta.glob`.
-
-### Publications
-
-- Blog cards and magazine cards are curated in code.
-- Uses representative images from the assets folders.
-- Intended as a static “publications showcase” (no CMS).
-
-### Media gallery
-
-- Loads images from src/assets via Vite glob import.
-- Automatically groups images by folder name.
-- Lightbox view opens on click; click outside closes.
-
-### Contact
-
-- Primary email contact via `mailto:`.
-- Social links open in a new tab with `rel="noopener noreferrer"`.
-
----
-
-## API Documentation (If Applicable)
-
-Not applicable for the current repository.
-
-- There are no implemented HTTP endpoints.
-- No authentication or authorization is implemented.
-
-If you add a backend, document:
-
-- Base URL, endpoints, request/response schemas, error formats.
-- Auth mechanism (session/JWT/OAuth) and role model.
-
----
-
-## UI/UX Behavior
-
-### Navigation structure
-
-- Fixed top Navbar with:
-	- Active route highlighting
-	- Mobile hamburger menu
-	- Theme toggle
-
-### Responsiveness
-
-- Tailwind responsive classes are used throughout.
-- Navigation collapses to a mobile menu on smaller screens.
-- Grid layouts adapt across breakpoints (media gallery, events grid, footer columns).
-
-### Accessibility considerations
-
-- Images generally include alt text.
-- External links use safe target/rel attributes.
-
-Recommended improvements:
-
-- Ensure all interactive elements have visible focus states.
-- Add keyboard support for lightbox close (Escape key) and video modal focus trapping.
-- Prefer semantic buttons over clickable divs where possible.
-
----
-
-## Error Handling & Edge Cases
-
-### Common errors
-
-- Unknown routes → NotFound page.
-- Runtime React errors → ErrorBoundary fallback UI.
-
-### Fail-safe mechanisms
-
-- ErrorBoundary prevents a full blank screen by rendering a recovery view.
-- The “Go to Home” action in ErrorBoundary forces a clean navigation.
-
-Edge cases to consider:
-
-- Missing/invalid media assets: currently not surfaced to the user (images may render broken).
-- Very large asset folders: eager imports may increase build size and memory usage.
-
----
-
-## Performance & Optimization
-
-### Caching strategies
-
-- Static hosting platforms (Vercel/Netlify) can cache immutable build assets.
-- Prefer long-cache headers for hashed JS/CSS assets (handled by most static hosts).
-
-### Lazy loading / code splitting
-
-- Current routes are imported eagerly in src/App.tsx.
-- Recommended: route-level lazy loading using `React.lazy()` + `Suspense` for large pages.
-
-### Optimization techniques used
-
-- Vite build pipeline (tree-shaking, minification).
-- Tailwind CSS utility generation + production purge.
-
-Potential improvements (if needed):
-
-- Change `import.meta.glob(..., { eager: true })` to non-eager loading for galleries.
-- Add image optimization pipeline (modern formats, responsive sizing).
-
----
-
-## Security Considerations
-
-### Authentication flow
-
-- Not implemented (public site).
-
-### Data validation
-
-- No server-side input handling exists in this repo.
-- Client-side validation libraries (Zod/React Hook Form) are available if forms are added.
-
-### Security best practices implemented
-
-- External links opened in a new tab typically use `rel="noopener noreferrer"`.
-- No secrets are stored in code; no env vars required.
-
-Recommended practices for production:
-
-- Add a Content Security Policy (CSP) via hosting headers.
-- Avoid committing any future API keys into the repo; use environment variables.
-
----
-
-## Deployment
-
-### Deployment platform
-
-- This repo is configured for SPA hosting on:
-	- Vercel via vercel.json
-	- Netlify-style hosting via public/_redirects
-
-### Build process
-
-- Build command: `npm run build`
-- Output directory: Vite default (`dist/`)
-
-### CI/CD overview (if any)
-
-- No CI/CD pipelines are included in this repository.
-- Suggested: GitHub Actions to run `npm ci`, `npm run lint`, and `npm run build` on pull requests.
-
----
-
-## Maintenance & Scalability
-
-### Code extensibility
-
-- Pages are cleanly separated under src/pages.
-- UI primitives are centralized under src/components/ui.
-- React Query is already set up globally, enabling future API integration without rewiring providers.
-
-### Future improvement suggestions
-
-- Add a CMS or structured content source for events/publications.
-- Add a backend (or serverless function) for contact submissions.
-- Add route-level code splitting and non-eager gallery loading.
-- Persist theme preference (localStorage) to maintain user choice.
-- Add automated image optimization and responsive sources.
-
----
-
-## Known Limitations
-
-### Current constraints
-
-- Content is hard-coded in the frontend (events/publications/panel member data).
-- No backend, database, or admin tooling is present.
-- Gallery imports are eager; large media libraries can increase build size.
-- Theme toggle state is not persisted across reloads.
-
-### Planned enhancements (recommended)
-
-- Introduce a content management approach (CMS or JSON-based content pipeline).
-- Add analytics events for key CTAs (beyond base page analytics).
-- Add accessibility enhancements for modals/lightboxes.
-
----
-
-## Notes for Maintainers
-
-- If you add environment variables, prefer Vite’s `VITE_` prefix and document them in this README.
-- Keep design tokens in src/index.css; avoid hard-coding colors in components.
-- Ensure hosting always rewrites unknown routes to /index.html for SPA navigation.
-=======
 

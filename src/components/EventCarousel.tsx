@@ -141,39 +141,38 @@ const EventCarousel = () => {
 
   return (
     <div 
-      className="relative w-full max-w-6xl mx-auto px-0 md:px-4"
+      className="relative w-full max-w-6xl mx-auto px-6 md:px-12"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="relative overflow-hidden rounded-2xl">
+      <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-2xl">
         <div
           className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {events.map((event) => (
             <div key={event.id} className="w-full flex-shrink-0">
-              <Card className="border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative h-64 md:h-96 overflow-hidden">
+              <Card className="border-0 bg-card/40 backdrop-blur-md overflow-hidden h-full">
+                <CardContent className="p-0 h-full">
+                  <div className="grid md:grid-cols-2 gap-0 h-full">
+                    <div className="relative h-64 md:h-[500px] overflow-hidden">
                       <img
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     </div>
-                    <div className="flex flex-col justify-center p-6 md:p-12">
-                      <span className="text-sm text-primary font-semibold mb-2">
+                    <div className="flex flex-col justify-center p-8 md:p-16 bg-gradient-to-br from-card/50 to-background/50">
+                      <span className="text-sm text-primary font-bold tracking-widest uppercase mb-4">
                         {event.date}
                       </span>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gradient">
+                      <h3 className="text-2xl md:text-4xl font-bold mb-6 text-foreground tracking-tight leading-tight">
                         {event.title}
                       </h3>
-                      <p className="text-muted-foreground text-lg">
+                      <p className="text-muted-foreground text-lg leading-relaxed">
                         {event.description}
                       </p>
                     </div>

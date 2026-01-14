@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import FadeIn from "@/components/FadeIn";
 
 // Import event images (one representative image from each event folder)
 const eventImages = import.meta.glob("../assets/**/**.jpg", { eager: true });
@@ -118,71 +119,57 @@ const Events = () => {
     return imagePath ? (eventImages[imagePath] as ImageModule).default : "";
   };
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Workshop":
-        return "bg-blue-500/10 text-blue-500 border-blue-500/30";
-      case "Seminar":
-        return "bg-purple-500/10 text-purple-500 border-purple-500/30";
-      case "Campaign":
-        return "bg-green-500/10 text-green-500 border-green-500/30";
-      case "Social":
-        return "bg-pink-500/10 text-pink-500 border-pink-500/30";
-      case "Competition":
-        return "bg-orange-500/10 text-orange-500 border-orange-500/30";
-      case "Orientation":
-        return "bg-cyan-500/10 text-cyan-500 border-cyan-500/30";
-      default:
-        return "bg-primary/10 text-primary border-primary/30";
-    }
-  };
-
   return (
-    <div className="min-h-screen pt-24 pb-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-5xl font-bold text-gradient mb-8 text-center">Our Events</h1>
-        <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-          Discover our exciting lineup of seminars, workshops, and medical campaigns
-        </p>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event, index) => (
-            <div
-              key={index}
-              className="glass rounded-xl overflow-hidden hover:scale-105 transition-transform animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={getEventImage(event.folderName)}
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Badge
-                    variant="outline"
-                    className={getCategoryColor(event.category)}
-                  >
-                    {event.category}
-                  </Badge>
-                  <Badge
-                    variant={event.status === "Ended" ? "secondary" : "default"}
-                    className={event.status === "Ended" ? "bg-muted text-muted-foreground" : ""}
-                  >
-                    {event.status}
-                  </Badge>
-                </div>
-                <h3 className="text-xl font-bold mt-2 mb-3">{event.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {event.description}
-                </p>
-              </div>
-            </div>
-          ))}
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
+      <section className="pt-32 md:pt-48 pb-16 md:pb-24 px-6 md:px-12">
+        <div className="container mx-auto max-w-5xl">
+          <FadeIn>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-12">
+              Happenings.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <p className="text-2xl md:text-3xl text-muted-foreground font-light leading-relaxed max-w-3xl">
+              A chronicle of our journey through science, community, and discovery.
+            </p>
+          </FadeIn>
         </div>
-      </div>
+      </section>
+      
+      <section className="px-6 md:px-12 pb-16 md:pb-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-16">
+            {events.map((event, index) => (
+              <FadeIn key={index} delay={index * 100} className="h-full">
+                <div className="group cursor-pointer hover-inspection p-4 rounded-2xl transition-all duration-500 h-full flex flex-col">
+                  <div className="aspect-[4/3] overflow-hidden rounded-xl mb-6 bg-secondary/20">
+                    <img
+                      src={getEventImage(event.folderName)}
+                      alt={event.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[10px] font-medium tracking-widest uppercase text-primary">
+                      {event.category}
+                    </span>
+                    <span className="w-px h-3 bg-border" />
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-widest">
+                      {event.status}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-medium mb-3 group-hover:text-primary transition-colors">
+                    {event.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm font-light line-clamp-3">
+                    {event.description}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { X, Mail, Phone, Users, Calendar, Target, Lightbulb } from "lucide-react";
+import { X, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import FadeIn from "@/components/FadeIn";
 
 // Import panel images
 import panel20222023 from "@/assets/Panel pictures/Panel pictures/panel 2022-2023.jpeg";
@@ -71,135 +71,164 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-5xl font-bold text-gradient mb-8 text-center">About BUNSC</h1>
-        
-        <div className="max-w-4xl mx-auto space-y-16">
-          {/* Our Club Section */}
-          <section id="club" className="scroll-mt-24 animate-fade-in">
-            <h2 className="text-3xl font-bold text-primary mb-4">Our Club</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              The BRAC University Natural Sciences Club (BUNSC) is a student-led organization
-              dedicated to promoting scientific research, environmental awareness, and community
-              service. We bridge the gap between academic learning and practical application,
-              fostering innovation and sustainability.
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
+      {/* Header Section */}
+      <section className="pt-32 md:pt-48 pb-16 md:pb-24 px-6 md:px-12">
+        <div className="container mx-auto max-w-5xl">
+          <FadeIn>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-12">
+              Who we are.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <p className="text-2xl md:text-3xl text-muted-foreground font-light leading-relaxed max-w-3xl">
+              The BRAC University Natural Sciences Club is a collective of curious minds dedicated to bridging the gap between academic theory and the living world.
             </p>
-          </section>
-
-          {/* Advisors Section */}
-          <section id="advisors" className="scroll-mt-24 animate-fade-in">
-            <h2 className="text-3xl font-bold text-primary mb-6">Our Advisors</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Advisor 1 */}
-              <div className="glass p-6 rounded-xl hover:scale-105 transition-transform">
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/20 mx-auto mb-4">
-                  <img 
-                    src={advisorRafiqul} 
-                    alt="Dr. Mohammad Rafiqul Islam" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-center mb-1">Dr. Mohammad Rafiqul Islam</h3>
-                <p className="text-center text-primary font-semibold mb-2">Club Advisor</p>
-                <p className="text-center text-muted-foreground mb-2">Professor of Statistics</p>
-                <p className="text-center text-sm text-muted-foreground mb-4">
-                  Department of Mathematics and Natural Sciences
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center gap-2 text-sm">
-                    <Phone className="h-4 w-4 text-primary" />
-                    <a href="tel:01726331009" className="hover:text-primary transition-colors">
-                      01726331009
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-sm">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <a href="mailto:mrafiq@bracu.ac.bd" className="hover:text-primary transition-colors">
-                      mrafiq@bracu.ac.bd
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Advisor 2 */}
-              <div className="glass p-6 rounded-xl hover:scale-105 transition-transform">
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/20 mx-auto mb-4">
-                  <img 
-                    src={advisorTawsif} 
-                    alt="Md. Tawsif Ur Rashid" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-center mb-1">Md. Tawsif Ur Rashid</h3>
-                <p className="text-center text-primary font-semibold mb-2">Club Co-Advisor</p>
-                <p className="text-center text-muted-foreground mb-2">Lecturer, Biotechnology Program</p>
-                <p className="text-center text-sm text-muted-foreground mb-4">
-                  Department of Mathematics and Natural Sciences
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center gap-2 text-sm">
-                    <Phone className="h-4 w-4 text-primary" />
-                    <a href="tel:01689900896" className="hover:text-primary transition-colors">
-                      01689900896
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-sm">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <a href="mailto:tawsif.rashid@bracu.ac.bd" className="hover:text-primary transition-colors">
-                      tawsif.rashid@bracu.ac.bd
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Panel Section */}
-          <section id="panel" className="scroll-mt-24 animate-fade-in">
-            <h2 className="text-3xl font-bold text-primary mb-6">Panel Pictures</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {panelImages.map((panel) => (
-                <div
-                  key={panel.year}
-                  className="glass rounded-xl overflow-hidden hover:scale-105 transition-transform cursor-pointer"
-                  onClick={() => setSelectedImage(panel.image)}
-                >
-                  <img
-                    src={panel.image}
-                    alt={`Panel ${panel.year}`}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="p-4 text-center">
-                    <h3 className="font-semibold text-lg">Panel {panel.year}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* More sections can be added similarly */}
+          </FadeIn>
         </div>
-      </div>
+      </section>
+
+      {/* Advisors Section - Clean & Minimal */}
+      <section className="py-16 md:py-24 border-t border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <FadeIn>
+            <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-16">
+              Guidance
+            </h2>
+          </FadeIn>
+          
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Dr. Mohammad Rafiqul Islam",
+                role: "Club Advisor",
+                title: "Professor of Statistics",
+                image: advisorRafiqul,
+                phone: "01726331009",
+                email: "mrafiq@bracu.ac.bd"
+              },
+              {
+                name: "Md. Tawsif Ur Rashid",
+                role: "Club Co-Advisor",
+                title: "Lecturer, Biotechnology Program",
+                image: advisorTawsif,
+                phone: "01689900896",
+                email: "tawsif.rashid@bracu.ac.bd"
+              }
+            ].map((advisor, index) => (
+              <FadeIn key={index} delay={index * 200} className="h-full">
+                <div className="group hover-inspection p-6 rounded-2xl bg-secondary/5 transition-all duration-500 h-full flex flex-col">
+                  <div className="aspect-square overflow-hidden rounded-full mb-6 bg-secondary/20 w-32 h-32 mx-auto">
+                    <img 
+                      src={advisor.image} 
+                      alt={advisor.name} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-medium mb-1">{advisor.name}</h3>
+                    <p className="text-primary text-sm mb-1">{advisor.role}</p>
+                    <p className="text-muted-foreground text-xs mb-4">{advisor.title}</p>
+                    
+                    <div className="flex flex-col gap-2 text-xs text-muted-foreground/80 items-center">
+                      <a href={`tel:${advisor.phone}`} className="hover:text-foreground transition-colors flex items-center gap-2">
+                        <Phone className="w-3 h-3" /> {advisor.phone}
+                      </a>
+                      <a href={`mailto:${advisor.email}`} className="hover:text-foreground transition-colors flex items-center gap-2">
+                        <Mail className="w-3 h-3" /> {advisor.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Section - Editorial Grid */}
+      <section className="py-16 md:py-24 border-t border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <FadeIn>
+            <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-16">
+              Leadership
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {panelMembers.map((member, index) => (
+              <FadeIn key={index} delay={index * 100} className="h-full">
+                <div className="p-6 rounded-2xl bg-secondary/5 hover-inspection transition-all duration-500 group h-full flex flex-col justify-between">
+                  <div>
+                    <p className="text-xs font-medium tracking-widest uppercase text-primary mb-4 opacity-60 group-hover:opacity-100 transition-opacity">
+                      {member.designation}
+                    </p>
+                    <h3 className="text-lg font-medium mb-1">{member.name}</h3>
+                    <p className="text-xs text-muted-foreground mb-4">{member.department}</p>
+                  </div>
+                  
+                  <div className="space-y-1 pt-4 border-t border-white/5">
+                    <a href={`mailto:${member.email}`} className="block text-xs text-muted-foreground hover:text-foreground transition-colors truncate">
+                      {member.email}
+                    </a>
+                    <p className="text-[10px] text-muted-foreground/60">ID: {member.id}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Legacy Section - Horizontal Scroll */}
+      <section className="py-16 md:py-24 border-t border-white/5 overflow-hidden">
+        <div className="container mx-auto px-6 md:px-12 mb-12">
+          <FadeIn>
+            <h2 className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+              Legacy
+            </h2>
+          </FadeIn>
+        </div>
+
+        <div className="flex gap-8 overflow-x-auto px-6 md:px-12 pb-12 scrollbar-hide snap-x">
+          {panelImages.map((panel, index) => (
+            <div 
+              key={index} 
+              className="flex-none w-[85vw] md:w-[600px] snap-center cursor-pointer group"
+              onClick={() => setSelectedImage(panel.image)}
+            >
+              <div className="aspect-video overflow-hidden rounded-2xl mb-4 relative">
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
+                <img
+                  src={panel.image}
+                  alt={`Panel ${panel.year}`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <p className="text-lg font-medium">Panel {panel.year}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center animate-fade-in p-4"
+          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300"
           onClick={() => setSelectedImage(null)}
         >
           <Button
             size="icon"
-            variant="outline"
+            variant="ghost"
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 bg-background/80 hover:bg-background"
+            className="absolute top-6 right-6 text-foreground hover:bg-white/10 rounded-full w-12 h-12"
           >
-            <X className="h-5 w-5" />
+            <X className="h-6 w-6" />
           </Button>
           <img
             src={selectedImage}
             alt="Full size panel"
-            className="max-w-full max-h-full object-contain"
+            className="max-w-full max-h-[90vh] object-contain shadow-2xl rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
