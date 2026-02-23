@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 
+import fallbackImage from "@/assets/hero.jpg";
+
 // Import event images (one representative image from each event folder)
 const eventImages = import.meta.glob("../assets/**/**.jpg", { eager: true });
 
@@ -18,6 +20,13 @@ interface Event {
 const Events = () => {
   const events: Event[] = [
     {
+      title: "Genesis",
+      description: "Introductory orientation session for newly recruited members, familiarizing them with the club's structure, goals, and upcoming activities.",
+      status: "Ended",
+      category: "Orientation",
+      folderName: "Genesis",
+    },
+    {
       title: "Club Fair",
       description: "Annual club fair showcasing BUNSC activities, achievements, and recruitment of new members. A vibrant event connecting students with science and nature.",
       status: "Ended",
@@ -32,7 +41,7 @@ const Events = () => {
       folderName: "BUNSC day tour",
     },
     {
-      title: "BUNSC Iftar Get Together",
+      title: "BUNSC Iftar Party",
       description: "Community bonding event bringing together club members for iftar during Ramadan. Fostering friendship and unity among science enthusiasts.",
       status: "Ended",
       category: "Social",
@@ -74,10 +83,10 @@ const Events = () => {
       folderName: "Fresher Orientation of fall2024,  Department of Mathematics and Natural Sciences",
     },
     {
-      title: "International Biology Competition (IBC)",
-      description: "Students prepared for and participated in the International Biology Competition, showcasing their expertise in biological sciences.",
+      title: "International Biotechnology Conference (IBC)",
+      description: "Participation and engagement in the International Biotechnology Conference, representing BUNSC and exploring innovations in biotechnology and life sciences.",
       status: "Ended",
-      category: "Competition",
+      category: "Seminar",
       folderName: "IBC",
     },
     {
@@ -115,7 +124,7 @@ const Events = () => {
     const imagePath = Object.keys(eventImages).find((path) => 
       path.includes(folderName) && !path.includes('Panel pictures') && !path.includes('icon') && !path.includes('hero-nature')
     );
-    return imagePath ? (eventImages[imagePath] as ImageModule).default : "";
+    return imagePath ? (eventImages[imagePath] as ImageModule).default : fallbackImage;
   };
 
   const getCategoryColor = (category: string) => {

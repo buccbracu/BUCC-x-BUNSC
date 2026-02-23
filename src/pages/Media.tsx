@@ -3,7 +3,10 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Import all images from assets folders
-const imageModules = import.meta.glob("../assets/**/*.{jpg,jpeg,png,gif,webp}", { eager: true });
+const imageModules = import.meta.glob(
+  "../assets/**/*.{jpg,jpeg,png,gif,webp}",
+  { eager: true },
+);
 
 interface ImageModule {
   default: string;
@@ -11,39 +14,50 @@ interface ImageModule {
 
 const Media = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  
+
   // Filter and organize images by folder
   const organizedImages: { [key: string]: string[] } = {};
-  
+
   Object.entries(imageModules).forEach(([path, module]) => {
     // Skip icon, hero-nature images, and Panel pictures folder
-    if (path.includes('icon.jpg') || path.includes('hero-nature.jpg') || path.includes('Panel pictures')) {
+    if (
+      path.includes("icon.jpg") ||
+      path.includes("hero-nature.jpg") ||
+      path.includes("Panel pictures") ||
+      path.includes("Dr. Mohammad Rafiqul Islam.jpg") ||
+      path.includes("Tawsif Ur Rashid.jpg") ||
+      path.includes("hero.jpg") ||
+      path.includes('Editorial write up') ||
+      path.includes("Screenshot 2025-11-05 010709.png")
+    ) {
       return;
     }
-    
+
     // Extract folder name from path
-    const pathParts = path.split('/');
-    const folderIndex = pathParts.findIndex(part => part === 'assets') + 1;
-    const folderName = pathParts[folderIndex] || 'Other';
-    
+    const pathParts = path.split("/");
+    const folderIndex = pathParts.findIndex((part) => part === "assets") + 1;
+    const folderName = pathParts[folderIndex] || "Other";
+
     // Clean up folder name (remove date suffixes)
-    const cleanFolderName = folderName.replace(/-\d{14}Z-1-\d{3}$/, '');
-    
+    const cleanFolderName = folderName.replace(/-\d{14}Z-1-\d{3}$/, "");
+
     if (!organizedImages[cleanFolderName]) {
       organizedImages[cleanFolderName] = [];
     }
-    
+
     organizedImages[cleanFolderName].push((module as ImageModule).default);
   });
 
   return (
     <div className="min-h-screen pt-24 pb-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-5xl font-bold text-gradient mb-8 text-center">Media Gallery</h1>
+        <h1 className="text-5xl font-bold text-gradient mb-8 text-center">
+          Media Gallery
+        </h1>
         <p className="text-center text-muted-foreground text-lg mb-12">
           Photos and videos from our events and activities
         </p>
-        
+
         {/* Display images organized by folder */}
         {Object.entries(organizedImages).map(([folderName, images]) => (
           <div key={folderName} className="mb-16">
