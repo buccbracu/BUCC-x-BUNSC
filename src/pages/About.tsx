@@ -80,11 +80,129 @@ const About = () => {
           <section id="club" className="scroll-mt-24 animate-fade-in">
             <h2 className="text-3xl font-bold text-primary mb-4">Our Club</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              The BRAC University Natural Sciences Club (BUNSC) is a student-led organization
-              dedicated to promoting scientific research, environmental awareness, and community
-              service. We bridge the gap between academic learning and practical application,
-              fostering innovation and sustainability.
+              The BRAC University Natural Sciences Club (BUNSC) is a student-led organization founded in 2011.
+              We serve as a platform for students to learn beyond the classroom—through competitions, seminars,
+              scientific news, and real-world awareness initiatives—while building a supportive science community.
             </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div className="glass rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Calendar className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold">Founding Year</h3>
+                </div>
+                <p className="text-3xl font-bold text-gradient">2011</p>
+              </div>
+              <div className="glass rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Users className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold">Current Members</h3>
+                </div>
+                <p className="text-3xl font-bold text-gradient">469</p>
+              </div>
+              <div className="glass rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Lightbulb className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold">Vision</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  Discover the marvels of science and become part of a community of inquisitive minds.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Mission & Objectives */}
+          <section id="mission" className="scroll-mt-24 animate-fade-in">
+            <h2 className="text-3xl font-bold text-primary mb-6">Mission & Objectives</h2>
+
+            <div className="glass rounded-xl p-6 mb-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Target className="h-5 w-5 text-primary" />
+                <h3 className="text-xl font-bold">Mission</h3>
+              </div>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>1. To inspire and engage BRAC University students in the natural sciences.</li>
+                <li>2. To organize seminars, workshops, and outreach that enhance scientific literacy.</li>
+                <li>3. To foster research exposure, collaboration, and innovation among undergraduates in natural science disciplines.</li>
+              </ul>
+            </div>
+
+            <div className="glass rounded-xl p-6">
+              <h3 className="text-xl font-bold mb-4">Objectives</h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>1. Provide hands-on scientific learning experiences beyond coursework.</li>
+                <li>2. Host expert-led lectures, panel discussions, and awareness campaigns.</li>
+                <li>3. Promote interdisciplinary science initiatives and research exposure.</li>
+                <li>4. Increase participation in national/international conferences and competitions.</li>
+                <li>5. Build a supportive network among students across physics, biotechnology, microbiology, mathematics, CSE, and more.</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Goals & Uniqueness */}
+          <section id="goals" className="scroll-mt-24 animate-fade-in">
+            <h2 className="text-3xl font-bold text-primary mb-6">Goals & Uniqueness</h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold mb-4">Goals (Next 3 Years)</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>1. Achieve 500+ active members, growing from current participation.</li>
+                  <li>2. Institutionalize annual signature events like research day or life sciences conferences/competitions.</li>
+                  <li>3. Facilitate student research presentations at national/international forums.</li>
+                  <li>4. Expand industry partnerships and sponsorships (e.g., Beacon Pharma, Quest Bangladesh).</li>
+                  <li>5. Launch collaborative science–society outreach programs with academic and NGO institutions.</li>
+                </ul>
+              </div>
+
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold mb-4">What Makes Us Different</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>1. Science-focused: centered exclusively on scientific inquiry and education.</li>
+                  <li>2. Interdisciplinary: welcomes students from physics, biotechnology, microbiology, mathematics, and more.</li>
+                  <li>3. Bridges academia & industry through applied awareness drives and expert seminars.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Programs */}
+          <section id="programs" className="scroll-mt-24 animate-fade-in">
+            <h2 className="text-3xl font-bold text-primary mb-6">Programs & Activities</h2>
+
+            <div className="glass rounded-xl p-6 mb-6">
+              <h3 className="text-xl font-bold mb-4">Yearly Signature Events</h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>1. Seminars on life sciences featuring expert speakers from academia and industry.</li>
+                <li>2. Health screening events (e.g., cancer screenings, Vitamin D deficiency screening and awareness).</li>
+                <li>3. Online creative initiatives like Synapse and editorial/scientific write-up competitions.</li>
+                <li>4. Club partnership in major inter-university events, contributing scientific expertise and representation.</li>
+                <li>5. Active participation in university-wide events like BUFL and BUPL to build teamwork and engagement.</li>
+              </ul>
+            </div>
+
+            <div className="glass rounded-xl p-6">
+              <h3 className="text-xl font-bold mb-4">Regular Events & Activities</h3>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <Badge variant="secondary">Genesis</Badge>
+                <Badge variant="secondary">GBM</Badge>
+                <Badge variant="secondary">Interactive Sessions</Badge>
+                <Badge variant="secondary">Seminars & Webinars</Badge>
+                <Badge variant="secondary">Health Campaigns</Badge>
+                <Badge variant="secondary">Creative Writing</Badge>
+                <Badge variant="secondary">Collaborations</Badge>
+              </div>
+              <ul className="space-y-2 text-muted-foreground">
+                <li><span className="font-semibold text-foreground">Genesis</span> – orientation for newly recruited members.</li>
+                <li><span className="font-semibold text-foreground">General Body Meetings (GBM)</span> – planning, feedback, and transparency.</li>
+                <li><span className="font-semibold text-foreground">Interactive Sessions</span> – bonding and open scientific dialogue.</li>
+                <li><span className="font-semibold text-foreground">Educational Seminars & Webinars</span> – life sciences, sustainability, and careers.</li>
+                <li><span className="font-semibold text-foreground">Health Awareness & Screening</span> – Vitamin D, cancer awareness, and other public health themes.</li>
+                <li><span className="font-semibold text-foreground">Creative Writing & Art-Based Events</span> – Synapse and editorial writing.</li>
+                <li><span className="font-semibold text-foreground">Collaborative Events</span> – club partner in national/inter-university forums.</li>
+              </ul>
+            </div>
           </section>
 
           {/* Advisors Section */}
@@ -157,7 +275,41 @@ const About = () => {
 
           {/* Panel Section */}
           <section id="panel" className="scroll-mt-24 animate-fade-in">
-            <h2 className="text-3xl font-bold text-primary mb-6">Panel Pictures</h2>
+            <h2 className="text-3xl font-bold text-primary mb-6">Panel</h2>
+
+            <div className="glass rounded-xl p-6 mb-8">
+              <h3 className="text-xl font-bold mb-4">Panel Members (Current)</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {panelMembers.map((member) => (
+                  <div key={member.id} className="glass rounded-xl p-5">
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div>
+                        <h4 className="text-lg font-bold">{member.name}</h4>
+                        <p className="text-sm text-muted-foreground">{member.department} • {member.semester} Semester</p>
+                      </div>
+                      <Badge variant="secondary">{member.designation}</Badge>
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4 text-primary" />
+                        <a href={`tel:${member.contact}`} className="hover:text-primary transition-colors">
+                          {member.contact}
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-4 w-4 text-primary" />
+                        <a href={`mailto:${member.email}`} className="hover:text-primary transition-colors">
+                          {member.email}
+                        </a>
+                      </div>
+                      <p className="text-muted-foreground">ID: {member.id}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-bold text-primary mb-6">Panel Pictures</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {panelImages.map((panel) => (
                 <div
@@ -177,8 +329,6 @@ const About = () => {
               ))}
             </div>
           </section>
-
-          {/* More sections can be added similarly */}
         </div>
       </div>
 

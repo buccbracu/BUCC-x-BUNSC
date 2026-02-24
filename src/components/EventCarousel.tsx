@@ -3,6 +3,8 @@ import { ChevronLeft, ChevronRight, Hand } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
+import fallbackImage from "@/assets/hero.jpg";
+
 // Import event images
 const eventImages = import.meta.glob("../assets/**/**.jpg", { eager: true });
 
@@ -21,41 +23,69 @@ interface Event {
 const eventsData: Event[] = [
   {
     id: 1,
+    title: "Genesis",
+    description: "Introductory orientation session for newly recruited members, introducing BUNSC's structure, goals, and upcoming activities",
+    folderName: "Genesis",
+    date: "Orientation Program",
+  },
+  {
+    id: 2,
+    title: "BUNSC Iftar Party",
+    description: "Community bonding event bringing together club members for iftar during Ramadan, fostering friendship and unity",
+    folderName: "BUNSC Iftar get together",
+    date: "Social Gathering",
+  },
+  {
+    id: 3,
+    title: "Lipid Profile Test Day",
+    description: "Free medical screening campaign providing lipid profile tests and promoting preventive healthcare awareness",
+    folderName: "Lipid profile test day",
+    date: "Health Campaign",
+  },
+  {
+    id: 4,
+    title: "International Biotechnology Conference (IBC)",
+    description: "Engagement in the International Biotechnology Conference, representing BUNSC and exploring biotech innovations",
+    folderName: "IBC",
+    date: "Conference",
+  },
+  {
+    id: 5,
     title: "Vitamin D Test Day",
     description: "Community health initiative offering free Vitamin D testing and raising awareness about deficiency prevention",
     folderName: "Vitamin D test Day",
     date: "October 2024",
   },
   {
-    id: 2,
+    id: 6,
     title: "Club Fair 2024",
     description: "Annual club fair showcasing BUNSC activities, achievements, and welcoming new members to our community",
     folderName: "Club fair",
     date: "September 2024",
   },
   {
-    id: 3,
+    id: 7,
     title: "BUNSC Day Tour",
     description: "Educational field trip exploring natural habitats and environmental conservation sites with club members",
     folderName: "BUNSC day tour",
     date: "August 2024",
   },
   {
-    id: 4,
+    id: 8,
     title: "Food Safety & Climate Agriculture",
     description: "Seminar by Dr. Abed Chaudhury on sustainable agriculture and food security in climate change",
     folderName: "Food safety and climate-resilient agriculture, Dr. Abed Chaudhury",
     date: "July 2024",
   },
   {
-    id: 5,
+    id: 9,
     title: "Ribbon of Hope",
     description: "Awareness campaign supporting cancer patients and survivors, spreading messages of hope and solidarity",
     folderName: "Ribbon of hope",
     date: "June 2024",
   },
   {
-    id: 6,
+    id: 10,
     title: "Spectrum Splash",
     description: "Colorful celebration of diversity in science featuring experiments, demonstrations, and creative expression",
     folderName: "Spectrum Splash",
@@ -68,7 +98,7 @@ const getEventImage = (folderName: string): string => {
   const imagePath = Object.keys(eventImages).find((path) => 
     path.includes(folderName) && !path.includes('Panel pictures') && !path.includes('icon') && !path.includes('hero-nature')
   );
-  return imagePath ? (eventImages[imagePath] as ImageModule).default : "";
+  return imagePath ? (eventImages[imagePath] as ImageModule).default : fallbackImage;
 };
 
 const events = eventsData.map(event => ({

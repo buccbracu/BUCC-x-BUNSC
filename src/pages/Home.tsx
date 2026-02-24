@@ -118,10 +118,10 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "500+", label: "Active Members" },
-              { number: "50+", label: "Events Hosted" },
-              { number: "20+", label: "Research Projects" },
-              { number: "10K+", label: "Lives Impacted" },
+              { number: "2011", label: "Founding Year" },
+              { number: "469", label: "Current Members" },
+              { number: "2", label: "Advisors" },
+              { number: "4", label: "Panel Members" },
             ].map((stat, index) => (
               <div
                 key={index}
