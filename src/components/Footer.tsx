@@ -162,7 +162,7 @@ const Footer = () => {
               href="https://www.bracucc.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary font-bold text-lg hover:text-primary/80 hover:underline transition-all inline-flex items-center gap-1"
+              className="text-blue-600 font-bold text-lg hover:text-primary/80 hover:underline transition-all inline-flex items-center gap-1"
             >
               BRAC University Computer Club (BUCC)
             </a>
