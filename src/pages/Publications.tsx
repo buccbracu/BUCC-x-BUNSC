@@ -248,9 +248,9 @@ const Publications = () => {
               </div>
             </section>
 
-            {/* Student Write-up Submissions */}
+            {/* Editorial Writeup */}
             <section>
-              <h2 className="text-3xl font-bold text-primary mb-2">Student Submissions</h2>
+              <h2 className="text-3xl font-bold text-primary mb-2">Editorial Writeup</h2>
               <p className="text-muted-foreground mb-8">Student write-up submissions from our members</p>
 
               {/* Fall Write-ups */}
